@@ -19,7 +19,6 @@ public class ShoppingCart {
 
 
     @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
             mappedBy = "shoppingCart")
     private Set<ProductsInCart> ProductsInCart = new HashSet<>();
 

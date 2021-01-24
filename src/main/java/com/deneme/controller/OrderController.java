@@ -4,6 +4,7 @@ import com.deneme.config.Tokens;
 import com.deneme.model.Order;
 import com.deneme.model.Product;
 import com.deneme.service.OrderService;
+import com.deneme.service.ProductInCartService;
 import com.deneme.service.ProductService;
 import com.deneme.service.ShoppingService;
 
@@ -32,6 +33,8 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ProductInCartService productInCartService;
 
     //Sipariş ver
     @RequestMapping(value = "/getOrder", method = RequestMethod.POST, consumes = "application/json")
@@ -84,8 +87,6 @@ public class OrderController {
 
         long cartId = shoppingService.getCartIdByUserId(userId);
 
-        
-        
         List<Product> listProduct = orderService.getProductsInOrder(userId,cartId);
         
         for (Product product : listProduct) {
@@ -93,6 +94,10 @@ public class OrderController {
 		}
         
         orderService.cancelledOrder(userId);
+        
+        productInCartService.clearProductInCart(cartId);
+        
+        
 
         logger.info("Order cancelling. userId : " + userId);
     }
