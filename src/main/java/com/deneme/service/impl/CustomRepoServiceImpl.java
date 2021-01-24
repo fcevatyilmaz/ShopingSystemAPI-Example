@@ -11,20 +11,20 @@ import com.deneme.dao.CustomDAO;
 import com.deneme.model.Product;
 import com.deneme.model.User;
 import com.deneme.repo.CustomRepo;
+import com.deneme.service.CustomRepoService;
 import com.deneme.service.CustomService;
 
 @Service
-@Transactional
-public class CustomServiceImpl implements CustomService{
+public class CustomRepoServiceImpl implements CustomRepoService{
 
 	@Autowired
-	private CustomDAO customDAO;
+	private CustomRepo customRepo;
 	
 	
 	@Override
 	public List<User> customQuery1(long productId) {
 		List<User> users = new ArrayList<User>();
-		List<Object[]> list = customDAO.customQuery1(productId);
+		List<Object[]> list = customRepo.customQuery1(productId);
 		for (Object[] user : list) {
 			User user1 = new User();
 

@@ -41,7 +41,7 @@ public class HibernateConfig {
 
 
 
-    @Bean
+    @Bean("entityManagerFactory") //JPARepository bu isimde bean istiyor.
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
